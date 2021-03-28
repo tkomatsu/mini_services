@@ -20,13 +20,25 @@ spec:
         - containerPort: 3306
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: rootpass
+          valueFrom:
+            secretKeyRef:
+              name: mini-secret
+              key: mysql_root_passowrd
         - name: MYSQL_DATABASE
-          value: wordpress
+          valueFrom:
+            secretKeyRef:
+              name: mini-secret
+              key: db_name
         - name: MYSQL_USER
-          value: wp_user
+          valueFrom:
+            secretKeyRef:
+              name: mini-secret
+              key: db_user
         - name: MYSQL_PASSWORD
-          value: password
+          valueFrom:
+            secretKeyRef:
+              name: mini-secret
+              key: db_password
         volumeMounts:
         - name: mariadb-data
           mountPath: /var/lib/mysql
