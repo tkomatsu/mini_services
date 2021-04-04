@@ -23,7 +23,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: mini-secret
-              key: mysql_root_passowrd
+              key: mysql_root_password
         - name: MYSQL_DATABASE
           valueFrom:
             secretKeyRef:
