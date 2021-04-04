@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+  labels:
+    app: phpmyadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+      - name: phpmyadmin
+        image: phpmyadmin
+        ports:
+        - name: http
+          containerPort: 80
+        - name: https
+          containerPort: 443
+        env:
+        - name: PMA_USER
+          valueFrom:
+            secretKeyRef:
+              name: mini-secret
+              key: db_user
+        - name: PMA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mini-secret
+              key: db_password
+        - name: PMA_HOST
+          value: mariadb-0.mariadb

@@ -11,8 +11,10 @@ kubectl apply -f mini-secret.yaml
 
 docker build -t nginx nginx
 kubectl apply -f nginx/nginx-deployment.yaml
-
 kubectl apply -f nginx/nginx-service.yaml
 
 kubectl apply -f mariadb/mariadb-statefulset.yaml
 kubectl apply -f mariadb/mariadb-service.yaml
+
+kubectl apply -f phpmyadmin/phpmyadmin-deployment.yaml
+kubectl apply -f phpmyadmin/phpmyadmin-service.yaml
